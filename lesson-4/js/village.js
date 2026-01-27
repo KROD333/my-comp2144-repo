@@ -10,7 +10,7 @@ const createScene = async function() {
     // Add a camera and allow it to control the canvas
     const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); 
     // Add Arc Rotate Camera
-    // camera.attachControl(canvas, true);
+    camera.attachControl(canvas, true);
     
     // Include a light
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
@@ -110,8 +110,21 @@ const createScene = async function() {
         }, audioEngine);
     }
     initAudio();
-    // STEP 15a: Set the above createScene() function to async (important, or this will not work)
-    // STEP 15b: Create the xrHelper to allow the visitor to choose WebXR if they are able and they'd like
+
+    // STEP 15a: Get a 3D model of a tree (from https://free3d.com/3d-model/low_poly_tree-816203.html)
+    // STEP 15b: Convert mesh and material data to glb file (https://convert3d.org/)
+    // STEP 15c: Drop the tree into the scene
+    const tree = BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Lowpoly_tree_sample.glb").then((result) => {
+        result.meshes[0].position.x = -2.5;
+        result.meshes[0].position.y = 0;
+        result.meshes[0].position.z = -2.5;
+        result.meshes[0].scaling = new BABYLON.Vector3(150, 150, 150);
+    });
+
+
+    // STEP 17a: Set the above createScene() function to async (important, or this will not work)
+
+    // STEP 17b: Create the xrHelper to allow the visitor to choose WebXR if they are able and they'd like
     // const xr = await scene.createDefaultXRExperienceAsync({
     //     floorMeshes: [ground],
     //     optionalFeatures: true
