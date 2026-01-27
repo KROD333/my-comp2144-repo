@@ -115,9 +115,10 @@ const createScene = async function() {
     // STEP 15b: Convert mesh and material data to glb file (https://convert3d.org/)
     // STEP 15c: Drop the tree into the scene
     const tree = BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Lowpoly_tree_sample.glb").then((result) => {
-        result.meshes[0].position.x = -2.5;
-        result.meshes[0].position.y = 0;
-        result.meshes[0].position.z = -2.5;
+        // result.meshes[0].position.x = -2.5;
+        // result.meshes[0].position.y = 0;
+        // result.meshes[0].position.z = -2.5;
+        result.meshes[0].position = new BABYLON.Vector3(-2.5, 0, -2.5);
         result.meshes[0].scaling = new BABYLON.Vector3(150, 150, 150);
     });
 
