@@ -144,6 +144,15 @@ const createScene = async function() {
             return null;
     });
 
+    // LAB B: Enhance the VR scene with a custom built imported mesh object.
+const tetrahedron = BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "tetrahedron.glb").then((result) => {
+    const tetraMesh = result.meshes[0];
+    const tetraBounds = result.meshes[1];
+    tetraBounds.showBoundingBox = true;
+    tetraMesh.scaling = new BABYLON.Vector3(200, 200, 200);
+    tetraMesh.position = new BABYLON.Vector3(-1.5, -0.05, 0);
+});
+
     // STEP 7: The car's wheels are stuck in the ground - we need to lift the car up so that it sits on the ground
     cart.position.y = 0.67;
 
@@ -170,14 +179,14 @@ const createScene = async function() {
 
     // STEP 13: Enable the WebXR experience, and walk around your scene using the provided VR headset
     // Check to see if WebXR (immersive-vr, specifically) is supported on this device
-    if (BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
-        const xr = await scene.createDefaultXRExperienceAsync({
-            floorMeshes: [ground],
-            optionalFeatures: true
-        });
-    } else {
-        console.log("WebXR is not supported on this device.");
-    }
+    // if (BABYLON.WebXRSessionManager.IsSessionSupportedAsync("immersive-vr")) {
+    //     const xr = await scene.createDefaultXRExperienceAsync({
+    //         floorMeshes: [ground],
+    //         optionalFeatures: true
+    //     });
+    // } else {
+    //     console.log("WebXR is not supported on this device.");
+    // }
 
     // Return the scene
     return scene;
@@ -194,3 +203,4 @@ window.addEventListener("resize", function() {
 });
 
 // Thanks to Gemini 2.0 and Copilot for some useful code refactoring tips! Also, thanks to TinkerCAD for the great 3D modeling web app.
+
