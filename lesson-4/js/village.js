@@ -9,7 +9,7 @@ const createScene = async function() {
     
     // Add a camera and allow it to control the canvas
     // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); 
-    // Add Arc Rotate Camera
+    // // Add Arc Rotate Camera
     // camera.attachControl(canvas, true);
     
     // Include a light
